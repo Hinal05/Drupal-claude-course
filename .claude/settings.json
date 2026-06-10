@@ -1,0 +1,48 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "ddev drush cr 2>/dev/null || true",
+            "statusMessage": "Clearing Drupal cache..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // \"\"' | grep -qE 'git commit' && git -C /home/hinal/Documents/Documents/self/Claude/drupal-claude-course log --oneline -5 2>/dev/null || true",
+            "statusMessage": "Showing recent commits..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // \"\"' | grep -qE 'git commit' && cd /home/hinal/Documents/Documents/self/Claude/drupal-claude-course && vendor/bin/phpcs --standard=Drupal web/modules/custom web/themes/custom 2>/dev/null || true",
+            "statusMessage": "Checking Drupal coding standards..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "notify-send 'Claude Code' 'Task complete' 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
