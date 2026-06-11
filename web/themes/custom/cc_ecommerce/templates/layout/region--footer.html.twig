@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Theme override for the footer region.
+ */
+#}
+<footer class="cc-footer" role="contentinfo">
+  <div class="cc-footer__inner">
+    <div class="cc-footer__grid">
+      <div class="cc-footer__col">
+        <h3 class="cc-footer__col-title">{{ site_name }}</h3>
+        <p>Quality products for everyone.</p>
+      </div>
+      <div class="cc-footer__col">
+        <h3 class="cc-footer__col-title">{{ 'Shop'|t }}</h3>
+        {{ drupal_menu('main') }}
+      </div>
+      <div class="cc-footer__col">
+        <h3 class="cc-footer__col-title">{{ 'Support'|t }}</h3>
+        <ul>
+          <li><a href="/contact">{{ 'Contact Us'|t }}</a></li>
+          <li><a href="/faq">{{ 'FAQ'|t }}</a></li>
+        </ul>
+      </div>
+      <div class="cc-footer__col">
+        <h3 class="cc-footer__col-title">{{ 'Follow Us'|t }}</h3>
+        <p>Stay connected.</p>
+      </div>
+    </div>
+    <div class="cc-footer__bottom">
+      <p>&copy; {{ "now"|date("Y") }} {{ site_name }}. {{ 'All rights reserved.'|t }}</p>
+    </div>
+  </div>
+</footer>

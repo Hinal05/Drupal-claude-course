@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override for product node in teaser view.
+ */
+#}
+{{ attach_library('cc_ecommerce/product-listing') }}
+<article{{ attributes.addClass('cc-product-card') }}>
+  {% if content.field_image %}
+    <div class="cc-product-card__image-wrap">
+      {{ content.field_image }}
+    </div>
+  {% endif %}
+  <div class="cc-product-card__body">
+    <h3 class="cc-product-card__title">
+      <a href="{{ url }}">{{ label }}</a>
+    </h3>
+    {% if content.field_price %}
+      <div class="cc-product-card__price">{{ content.field_price }}</div>
+    {% endif %}
+    <a href="{{ url }}" class="cc-product-card__cta">{{ 'View Product'|t }}</a>
+  </div>
+</article>
