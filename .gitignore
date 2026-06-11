@@ -11,6 +11,8 @@ unct.es.secrets.json
 /web/themes/contrib/
 /web/profiles/contrib/
 /web/libraries/
+web/themes/custom/**/dist/
+web/themes/custom/**/node_modules/
 
 # Ignore sensitive information
 # Only ignore default settings.php (DDEV auto-generates it).
@@ -31,6 +33,9 @@ unct.es.secrets.json
 /.env
 
 *.sql
+
+# Node.js
+node_modules/
 
 # Ignore OS generated files
 .DS_Store

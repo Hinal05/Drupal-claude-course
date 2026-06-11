@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'About Us'
+type: about_us
+description: 'About Us page with hero banner and two-column layout.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,64 @@
+<?php
+
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function cc_ecommerce_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  $variables['#attached']['library'][] = match ($node->bundle()) {
+    'product' => $variables['view_mode'] === 'teaser'
+      ? 'cc_ecommerce/product-listing'
+      : 'cc_ecommerce/product-detail',
+    'about_us' => 'cc_ecommerce/about-us',
+    default => '',
+  };
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function cc_ecommerce_preprocess_page(&$variables) {
+  $variables['#attached']['library'][] = 'cc_ecommerce/header';
+  $variables['#attached']['library'][] = 'cc_ecommerce/footer';
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface && $node->bundle() === 'about_us') {
+    if ($node->hasField('field_hero_image') && !$node->get('field_hero_image')->isEmpty()) {
+      $file = $node->get('field_hero_image')->entity;
+      if ($file) {
+        $variables['hero_image_url'] = \Drupal::service('file_url_generator')
+          ->generateAbsoluteString($file->getFileUri());
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function cc_ecommerce_preprocess_region(&$variables) {
+  if ($variables['region'] === 'footer') {
+    $variables['site_name'] = \Drupal::config('system.site')->get('name');
+  }
+}
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function cc_ecommerce_preprocess_menu(&$variables) {
+  if ($variables['menu_name'] === 'main') {
+    $variables['#attached']['library'][] = 'cc_ecommerce/navigation';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function cc_ecommerce_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface) {
+    $suggestions[] = 'page__node__' . $node->bundle();
+  }
+}

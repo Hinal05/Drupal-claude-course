@@ -1,0 +1,17 @@
+name: CC Ecommerce
+type: theme
+description: 'Custom ecommerce theme for Claude Code course project.'
+core_version_requirement: ^10 || ^11
+base theme: olivero
+libraries:
+  - cc_ecommerce/global
+regions:
+  header: Header
+  primary_menu: Primary Menu
+  secondary_menu: Secondary Menu
+  highlighted: Highlighted
+  breadcrumb: Breadcrumb
+  content: Content
+  sidebar_first: Sidebar First
+  sidebar_second: Sidebar Second
+  footer: Footer
