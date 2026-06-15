@@ -1,0 +1,6 @@
+featured:
+  css:
+    component:
+      css/featured.css: {}
+  dependencies:
+    - cc_ecommerce/global

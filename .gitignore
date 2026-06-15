@@ -37,6 +37,9 @@ web/themes/custom/**/node_modules/
 # Node.js
 node_modules/
 
+# MCP config (contains API tokens)
+.mcp.json
+
 # Ignore OS generated files
 .DS_Store
 

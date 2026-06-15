@@ -1,0 +1,7 @@
+name: 'CC Featured Products'
+type: module
+description: 'Provides a Featured Products block for the cc_ecommerce theme.'
+core_version_requirement: ^10 || ^11
+package: 'Claude Course'
+dependencies:
+  - drupal:node

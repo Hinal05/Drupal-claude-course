@@ -13,15 +13,22 @@ drupal-claude-course/
 ├── CLAUDE.md                   # This file — project context for Claude Code
 ├── composer.json               # Drupal project dependencies
 ├── vendor/                     # Composer dependencies (includes drush, phpcs)
+├── config/
+│   └── setup/                  # Drupal content type + field config YAMLs (partial import)
 ├── web/                        # Drupal webroot
 │   ├── core/                   # Drupal core (do not edit)
-│   ├── modules/custom/         # Custom Drupal modules (cc_* prefix)
-│   └── themes/custom/          # Custom Drupal themes
+│   ├── modules/custom/
+│   │   └── cc_featured/        # Featured Products block plugin
+│   └── themes/custom/
+│       └── cc_ecommerce/       # Custom theme extending Olivero (6 components)
 ├── .ddev/                      # DDEV local dev environment config
+├── .mcp.json                   # GitHub MCP server config (gitignored)
 ├── .claude/
 │   ├── settings.json           # Hooks configuration
 │   ├── agents/                 # Custom subagents
 │   ├── skills/                 # Custom slash commands
+│   ├── workflows/
+│   │   └── drupal-audit.js     # Parallel Drupal audit (SDK multi-agent)
 │   └── commands/               # Legacy commands directory
 └── docs/
     └── exercises/              # Notes and exercise logs per course module
@@ -91,6 +98,7 @@ Configured in `.claude/settings.json` — run automatically:
 | `PostToolUse` | Edit or Write any file | `ddev drush cr` — auto-clears Drupal cache |
 | `PostToolUse` | Bash with `git commit` | `git log --oneline -5` — shows recent commits |
 | `PreToolUse` | Bash with `git commit` | `phpcs --standard=Drupal` — checks coding standards |
+| `PreCompact` | Manual `/compact` | Injects reminder to preserve in-progress task context |
 | `Stop` | Claude finishes a task | Desktop notification via `notify-send` |
 
 ## Course Modules Checklist
@@ -102,8 +110,9 @@ Configured in `.claude/settings.json` — run automatically:
 - [x] Module 4: Set up hooks (drush cr, phpcs, git log, notify-send)
 
 ### Claude Code in Action
-- [ ] Context management: use /compact and context window strategies on a large Drupal codebase task
-- [ ] Visual workflow: provide a screenshot/mockup and implement a Drupal block or page
+- [x] Context management: PreCompact hook added; use /compact on large tasks to preserve context
+- [x] Visual workflow: designed and implemented Featured Products block (`cc_featured` module) placed on homepage
 - [x] Custom commands: create `/drupal-module`, `/drupal-review`, `/drush` skills
-- [ ] MCP integration: connect an external tool (e.g., Jira, GitHub)
-- [ ] GitHub workflow: automated code review on a Drupal PR
+- [x] MCP integration: GitHub MCP server connected via `.mcp.json`
+- [x] GitHub workflow: automated code review posted on PR #1 via `drupal-code-reviewer` agent
+- [x] SDK multi-agent: parallel Drupal audit workflow at `.claude/workflows/drupal-audit.js`
