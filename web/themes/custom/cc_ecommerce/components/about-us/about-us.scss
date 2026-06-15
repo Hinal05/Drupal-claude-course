@@ -1,0 +1,95 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.cc-hero {
+  position: relative;
+  height: 400px;
+  background: $color-dark;
+  overflow: hidden;
+
+  @include respond-to('lg') {
+    height: 500px;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    @include flex-center;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    color: $color-white;
+    padding: 0 $spacing-md;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: 800;
+    margin: 0 0 $spacing-md;
+  }
+
+  &__subtitle {
+    font-size: $font-size-xl;
+    opacity: 0.9;
+    max-width: 600px;
+  }
+}
+
+.cc-about {
+  padding: $spacing-3xl 0;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+
+    @include respond-to('lg') {
+      grid-template-columns: 2fr 1fr;
+      padding: 0 $spacing-xl;
+    }
+  }
+
+  &__body {
+    font-size: $font-size-lg;
+    line-height: 1.8;
+    color: $color-mid;
+  }
+
+  &__sidebar {
+    background: $color-light;
+    border-radius: 8px;
+    padding: $spacing-xl;
+  }
+
+  &__stat {
+    text-align: center;
+    padding: $spacing-md 0;
+    border-bottom: 1px solid $color-border;
+
+    &:last-child { border-bottom: none; }
+
+    &-number {
+      font-size: $font-size-2xl;
+      font-weight: 800;
+      color: $color-primary;
+    }
+
+    &-label {
+      font-size: $font-size-sm;
+      color: $color-mid;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+}

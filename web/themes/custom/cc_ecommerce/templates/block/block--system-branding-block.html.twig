@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override for the system branding block.
+ */
+#}
+{{ attach_library('cc_ecommerce/header') }}
+<div{{ attributes.addClass('cc-header__branding') }}>
+  {% if site_logo %}
+    <a href="{{ path('<front>') }}" rel="home" class="cc-header__logo-link">
+      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" class="cc-header__logo" />
+    </a>
+  {% endif %}
+  {% if site_name %}
+    <div class="cc-header__site-name">
+      <a href="{{ path('<front>') }}" rel="home">{{ site_name }}</a>
+    </div>
+  {% endif %}
+</div>

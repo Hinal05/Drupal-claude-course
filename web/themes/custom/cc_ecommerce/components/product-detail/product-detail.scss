@@ -1,0 +1,78 @@
+@use '../../scss/variables' as *;
+@use '../../scss/mixins' as *;
+
+.cc-product-detail {
+  padding: $spacing-2xl 0;
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-2xl;
+
+    @include respond-to('lg') {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__gallery {
+    &-main {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid $color-border;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: 700;
+    color: $color-dark;
+    margin: 0;
+  }
+
+  &__price {
+    font-size: $font-size-3xl;
+    font-weight: 800;
+    color: $color-primary;
+
+    &::before {
+      content: '$';
+    }
+  }
+
+  &__description {
+    font-size: $font-size-base;
+    line-height: 1.8;
+    color: $color-mid;
+  }
+
+  &__cta {
+    display: inline-block;
+    padding: $spacing-md $spacing-2xl;
+    background: $color-primary;
+    color: $color-white;
+    border-radius: 4px;
+    font-size: $font-size-lg;
+    font-weight: 700;
+    transition: background 0.2s ease;
+    align-self: flex-start;
+
+    &:hover {
+      background: $color-primary-dark;
+      color: $color-white;
+      text-decoration: none;
+    }
+  }
+}

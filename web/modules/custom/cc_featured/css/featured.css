@@ -1,0 +1,59 @@
+/* Featured Products block — visual design */
+
+.cc-featured {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
+  border-top: 4px solid #0057a8;
+  margin: 2rem 0;
+}
+
+.cc-featured__header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.cc-featured__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.cc-featured__subtitle {
+  font-size: 1.125rem;
+  color: #666;
+  margin: 0;
+}
+
+.cc-featured__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.cc-featured__footer {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.cc-featured__cta {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: #0057a8;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.cc-featured__cta:hover {
+  background: #003d7a;
+  color: #fff;
+  text-decoration: none;
+}
