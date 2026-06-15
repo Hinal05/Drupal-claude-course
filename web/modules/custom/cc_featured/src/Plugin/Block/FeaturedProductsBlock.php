@@ -136,7 +136,7 @@ class FeaturedProductsBlock extends BlockBase implements ContainerFactoryPluginI
       ],
       '#cache' => [
         'tags' => ['node_list:product'],
-        'contexts' => ['languages'],
+        'contexts' => ['languages', 'user.permissions'],
         'max-age' => Cache::PERMANENT,
       ],
     ];

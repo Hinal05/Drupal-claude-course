@@ -21,9 +21,9 @@
       {{ page.primary_menu }}
     </div>
 
-    <div class="cc-hero"{% if hero_image_url %} style="background-image: url('{{ hero_image_url }}')"{% endif %}>
+    <div class="cc-hero"{% if hero_image_url %} style="background-image: url('{{ hero_image_url|escape('css') }}')"{% endif %}>
       {% if hero_image_url %}
-        <div class="cc-hero__bg" style="background-image: url('{{ hero_image_url }}')"></div>
+        <div class="cc-hero__bg" style="background-image: url('{{ hero_image_url|escape('css') }}')"></div>
       {% endif %}
       <div class="cc-hero__content">
         <h1 class="cc-hero__title">{{ 'About Us'|t }}</h1>

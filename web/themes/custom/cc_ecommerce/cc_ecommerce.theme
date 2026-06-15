@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Preprocesses and hook implementations for the cc_ecommerce theme.
+ */
+
 use Drupal\node\NodeInterface;
 
 /**

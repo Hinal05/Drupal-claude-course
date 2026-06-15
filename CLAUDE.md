@@ -89,6 +89,33 @@ Invoke these agents for specialized Drupal tasks:
 | `/drupal-review [file]` | Review code for Drupal standards + security |
 | `/drush <command>` | Run any drush command with explanation |
 
+## MCP Servers
+
+Configured in `.mcp.json` — available to Claude as tools, resources, and prompts:
+
+### `drupal` (custom — `mcp/drupal-mcp/`)
+Wraps `ddev drush` commands for direct Claude access.
+
+| Type | Name | What it does |
+|------|------|-------------|
+| Tool | `drush_cache_clear` | Clear all Drupal caches |
+| Tool | `drush_status` | Get site status (version, DB, bootstrap) |
+| Tool | `drush_module_list` | List all enabled modules |
+| Tool | `drush_module_enable` | Enable a module by machine name |
+| Tool | `drush_config_get` | Read a config value |
+| Tool | `drush_watchdog` | View recent Drupal log messages |
+| Tool | `drush_node_list` | List nodes by content type |
+| Resource | `drupal://site/status` | Site status as JSON |
+| Resource | `drupal://modules/enabled` | Enabled modules as JSON |
+| Resource | `drupal://modules/custom` | Custom module list |
+| Resource | `drupal://config/system.site` | Site config as JSON |
+| Prompt | `drupal-debug` | Debug a Drupal error message |
+| Prompt | `drupal-review` | Review a Drupal file for standards |
+| Prompt | `drupal-module-plan` | Plan a new custom module |
+
+### `github` (via `@modelcontextprotocol/server-github`)
+GitHub API access — create PRs, post comments, read files, manage issues.
+
 ## Active Hooks
 
 Configured in `.claude/settings.json` — run automatically:
