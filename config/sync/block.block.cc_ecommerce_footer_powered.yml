@@ -1,0 +1,20 @@
+uuid: 5b94b384-b176-4adc-9cf2-6d21d690e4e2
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cc_ecommerce
+id: cc_ecommerce_footer_powered
+theme: cc_ecommerce
+region: footer
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: Footer
+  label_display: '0'
+  provider: system
+visibility: {  }

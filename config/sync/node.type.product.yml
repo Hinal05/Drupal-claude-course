@@ -1,0 +1,11 @@
+uuid: 52fba922-7092-438c-a8fa-75bcbe0c7ae9
+langcode: en
+status: true
+dependencies: {  }
+name: Product
+type: product
+description: 'An ecommerce product with image, price and description.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

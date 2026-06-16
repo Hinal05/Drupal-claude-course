@@ -1,0 +1,11 @@
+uuid: f28d1323-5d91-48b6-83b6-e3a2c24d16e0
+langcode: en
+status: true
+dependencies: {  }
+name: 'About Us'
+type: about_us
+description: 'About Us page with hero banner and two-column layout.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

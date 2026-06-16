@@ -1,0 +1,20 @@
+uuid: cf2a450a-3324-4065-9100-6f030eb28431
+langcode: en
+status: true
+dependencies:
+  theme:
+    - cc_ecommerce
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: cc_ecommerce_page_title
+theme: cc_ecommerce
+region: header
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

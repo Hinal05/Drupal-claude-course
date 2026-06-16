@@ -8,7 +8,7 @@
   <div class="cc-footer__inner">
     <div class="cc-footer__grid">
       <div class="cc-footer__col">
-        <h3 class="cc-footer__col-title">{{ site_name }}</h3>
+        <h3 class="cc-footer__col-title">{{ site_name|e }}</h3>
         <p>{{ 'Quality products for everyone.'|t }}</p>
       </div>
       <div class="cc-footer__col">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="cc-footer__bottom">
-      <p>&copy; {{ "now"|date("Y") }} {{ site_name }}. {{ 'All rights reserved.'|t }}</p>
+      <p>&copy; {{ "now"|date("Y") }} {{ site_name|e }}. {{ 'All rights reserved.'|t }}</p>
     </div>
   </div>
 </footer>

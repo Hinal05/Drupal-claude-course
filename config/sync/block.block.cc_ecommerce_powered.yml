@@ -1,0 +1,22 @@
+uuid: b66d35cf-3a0f-4aad-8ef4-2b013d52cb3c
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cc_ecommerce
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: cc_ecommerce_powered
+theme: cc_ecommerce
+region: header
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }
