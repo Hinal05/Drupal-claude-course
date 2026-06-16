@@ -159,3 +159,18 @@ Configured in `.claude/settings.json` — run automatically:
 - [x] MCP integration: GitHub MCP server connected via `.mcp.json`
 - [x] GitHub workflow: automated code review posted on PR #1 via `drupal-code-reviewer` agent
 - [x] SDK multi-agent: parallel Drupal audit workflow at `.claude/workflows/drupal-audit.js`
+- [x] Hooks deep dive: added php -l, sensitive file blocker, SessionStart context, UserPromptSubmit audit log
+
+### Introduction to Subagents
+- [x] drupal-config-manager: export/import/diff config operations
+- [x] drupal-security-auditor: dedicated security scanning agent
+
+### Introduction to Agent Skills
+- [x] /drupal-config: config management skill (cex/cim/status/get)
+- [x] /drupal-audit: one-command parallel audit trigger
+- [x] /drupal-deploy: cim → updb → cr deploy sequence
+
+### MCP Advanced Topics
+- [x] Config tools added to Drupal MCP server (export, import, status, updb)
+- [x] drupal://config/status resource (live config diff)
+- [x] drupal-deploy and drupal-config-review prompts added
