@@ -1,0 +1,38 @@
+uuid: 43b67178-ab60-4611-a5a4-eee3dcc1935b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hero_image
+    - node.type.about_us
+  module:
+    - image
+id: node.about_us.field_hero_image
+field_name: field_hero_image
+entity_type: node
+bundle: about_us
+label: 'Hero Image'
+description: 'Background image for the hero banner.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: hero
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: '10 MB'
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: null
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

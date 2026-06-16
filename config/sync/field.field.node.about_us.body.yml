@@ -1,0 +1,23 @@
+uuid: ed140d90-946e-4d13-8e3f-8ff648d27285
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.about_us
+  module:
+    - text
+id: node.about_us.body
+field_name: body
+entity_type: node
+bundle: about_us
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

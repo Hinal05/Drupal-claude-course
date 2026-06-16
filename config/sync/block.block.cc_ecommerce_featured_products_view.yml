@@ -1,0 +1,29 @@
+uuid: 8b03a5ad-dd14-4bbf-bb80-58fc443a9808
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.product_listing
+  module:
+    - system
+    - views
+  theme:
+    - cc_ecommerce
+id: cc_ecommerce_featured_products_view
+theme: cc_ecommerce
+region: content
+weight: -10
+provider: null
+plugin: 'views_block:product_listing-block_1'
+settings:
+  id: 'views_block:product_listing-block_1'
+  label: 'Featured Products'
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: 3
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

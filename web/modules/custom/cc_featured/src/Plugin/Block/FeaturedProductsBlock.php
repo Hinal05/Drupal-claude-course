@@ -135,8 +135,9 @@ class FeaturedProductsBlock extends BlockBase implements ContainerFactoryPluginI
         'library' => ['cc_featured/featured'],
       ],
       '#cache' => [
+        'keys' => ['cc_featured_products'],
         'tags' => ['node_list:product'],
-        'contexts' => ['languages'],
+        'contexts' => ['languages', 'user.permissions'],
         'max-age' => Cache::PERMANENT,
       ],
     ];

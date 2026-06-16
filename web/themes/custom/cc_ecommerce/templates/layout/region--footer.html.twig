@@ -8,8 +8,8 @@
   <div class="cc-footer__inner">
     <div class="cc-footer__grid">
       <div class="cc-footer__col">
-        <h3 class="cc-footer__col-title">{{ site_name }}</h3>
-        <p>Quality products for everyone.</p>
+        <h3 class="cc-footer__col-title">{{ site_name|e }}</h3>
+        <p>{{ 'Quality products for everyone.'|t }}</p>
       </div>
       <div class="cc-footer__col">
         <h3 class="cc-footer__col-title">{{ 'Shop'|t }}</h3>
@@ -24,11 +24,11 @@
       </div>
       <div class="cc-footer__col">
         <h3 class="cc-footer__col-title">{{ 'Follow Us'|t }}</h3>
-        <p>Stay connected.</p>
+        <p>{{ 'Stay connected.'|t }}</p>
       </div>
     </div>
     <div class="cc-footer__bottom">
-      <p>&copy; {{ "now"|date("Y") }} {{ site_name }}. {{ 'All rights reserved.'|t }}</p>
+      <p>&copy; {{ "now"|date("Y") }} {{ site_name|e }}. {{ 'All rights reserved.'|t }}</p>
     </div>
   </div>
 </footer>

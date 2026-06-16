@@ -1,0 +1,23 @@
+uuid: 5d41cc68-f45a-4143-ad85-bf7ebd82d7d5
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - cc_ecommerce
+_core:
+  default_config_hash: _nZjxxdypO6xrOAJkCYD81v0L7wh2zbCAVO7_C-UKIc
+id: cc_ecommerce_search_form_narrow
+theme: cc_ecommerce
+region: primary_menu
+weight: -4
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (narrow)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }

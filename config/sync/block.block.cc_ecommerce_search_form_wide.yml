@@ -1,0 +1,23 @@
+uuid: f83d6cb7-5925-48c0-83bc-669869a38852
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - cc_ecommerce
+_core:
+  default_config_hash: pbbed0hdqGDF-_QWVVTWRAwgDIotFuAvWH5mWUZu0fA
+id: cc_ecommerce_search_form_wide
+theme: cc_ecommerce
+region: header
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: null
+visibility: {  }

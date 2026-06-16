@@ -1,0 +1,22 @@
+uuid: 562f2340-49e9-46e7-9ae3-b4f3ddce854e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cc_ecommerce
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: cc_ecommerce_content
+theme: cc_ecommerce
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

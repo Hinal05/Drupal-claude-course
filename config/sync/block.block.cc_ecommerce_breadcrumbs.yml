@@ -1,0 +1,22 @@
+uuid: 7cdcbf24-bf5c-453f-9c6c-ef32ad3712e6
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cc_ecommerce
+_core:
+  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
+id: cc_ecommerce_breadcrumbs
+theme: cc_ecommerce
+region: header
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

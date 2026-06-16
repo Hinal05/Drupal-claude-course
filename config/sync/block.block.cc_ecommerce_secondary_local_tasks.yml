@@ -1,0 +1,22 @@
+uuid: bdd2b380-b767-4183-80bc-abf16a1cdbb5
+langcode: en
+status: true
+dependencies:
+  theme:
+    - cc_ecommerce
+_core:
+  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+id: cc_ecommerce_secondary_local_tasks
+theme: cc_ecommerce
+region: highlighted
+weight: -2
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

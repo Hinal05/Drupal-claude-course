@@ -4,7 +4,6 @@
  * Template for the Featured Products block.
  */
 #}
-{{ attach_library('cc_featured/featured') }}
 <div{{ attributes.addClass('cc-featured') }}>
   <div class="cc-featured__header">
     <h2 class="cc-featured__title">{{ 'Featured Products'|t }}</h2>
@@ -14,6 +13,6 @@
     {{ content }}
   </div>
   <div class="cc-featured__footer">
-    <a href="/products" class="cc-featured__cta">{{ 'View All Products'|t }}</a>
+    <a href="{{ path('view.product_listing.page_1') }}" class="cc-featured__cta">{{ 'View All Products'|t }}</a>
   </div>
 </div>

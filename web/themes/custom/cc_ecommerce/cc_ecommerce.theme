@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @file
+ * Preprocesses and hook implementations for the cc_ecommerce theme.
+ */
+
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\node\NodeInterface;
 
 /**
@@ -7,13 +13,16 @@ use Drupal\node\NodeInterface;
  */
 function cc_ecommerce_preprocess_node(&$variables) {
   $node = $variables['node'];
-  $variables['#attached']['library'][] = match ($node->bundle()) {
+  $library = match ($node->bundle()) {
     'product' => $variables['view_mode'] === 'teaser'
       ? 'cc_ecommerce/product-listing'
       : 'cc_ecommerce/product-detail',
     'about_us' => 'cc_ecommerce/about-us',
-    default => '',
+    default => NULL,
   };
+  if ($library) {
+    $variables['#attached']['library'][] = $library;
+  }
 }
 
 /**
@@ -28,8 +37,9 @@ function cc_ecommerce_preprocess_page(&$variables) {
     if ($node->hasField('field_hero_image') && !$node->get('field_hero_image')->isEmpty()) {
       $file = $node->get('field_hero_image')->entity;
       if ($file) {
-        $variables['hero_image_url'] = \Drupal::service('file_url_generator')
+        $url = \Drupal::service('file_url_generator')
           ->generateAbsoluteString($file->getFileUri());
+        $variables['hero_image_url'] = UrlHelper::stripDangerousProtocols($url);
       }
     }
   }
