@@ -112,6 +112,47 @@ server.tool(
   }
 );
 
+server.tool(
+  'drush_config_export',
+  'Export active Drupal configuration to config/sync directory',
+  {},
+  async () => {
+    const result = await drush('cex --yes');
+    return { content: [{ type: 'text', text: result }] };
+  }
+);
+
+server.tool(
+  'drush_config_import',
+  'Import configuration from config/sync into the active Drupal database',
+  {},
+  async () => {
+    const exportResult = await drush('cim --yes');
+    const cacheResult = await drush('cr');
+    return { content: [{ type: 'text', text: `${exportResult}\n${cacheResult}` }] };
+  }
+);
+
+server.tool(
+  'drush_config_status',
+  'Show differences between active Drupal config and config/sync (what would change on cim)',
+  {},
+  async () => {
+    const result = await drush('config:status --format=json');
+    return { content: [{ type: 'text', text: result }] };
+  }
+);
+
+server.tool(
+  'drush_update_db',
+  'Run pending Drupal database updates (updb)',
+  {},
+  async () => {
+    const result = await drush('updb --yes');
+    return { content: [{ type: 'text', text: result }] };
+  }
+);
+
 // ── Resources ──────────────────────────────────────────────────────────────
 
 server.resource(
@@ -239,6 +280,66 @@ Please provide:
 2. Key classes/hooks needed
 3. Any dependencies (other modules, services)
 4. Implementation steps in order`,
+      },
+    }],
+  })
+);
+
+server.resource(
+  'config-status',
+  'drupal://config/status',
+  { mimeType: 'application/json' },
+  async () => {
+    const result = await drush('config:status --format=json');
+    return { contents: [{ uri: 'drupal://config/status', text: result, mimeType: 'application/json' }] };
+  }
+);
+
+server.prompt(
+  'drupal-deploy',
+  'Generate a step-by-step deployment prompt for applying config and DB updates',
+  { environment: z.string().optional().describe('Target environment: local, staging, production') },
+  ({ environment = 'local' }) => ({
+    messages: [{
+      role: 'user',
+      content: {
+        type: 'text',
+        text: `Run the standard Drupal deployment sequence for the ${environment} environment.
+
+Steps to execute in order:
+1. ddev drush cim --yes  (import config)
+2. ddev drush updb --yes (run DB updates)
+3. ddev drush cr         (clear caches)
+
+For each step:
+- Show the command output
+- Report success or failure
+- Stop immediately if any step fails — do not proceed
+
+After all steps complete, confirm the site is operational.`,
+      },
+    }],
+  })
+);
+
+server.prompt(
+  'drupal-config-review',
+  'Review config/sync files for a specific feature to understand what will be imported',
+  { feature: z.string().describe('Feature name or config prefix to review, e.g. views, pathauto, node.type') },
+  ({ feature }) => ({
+    messages: [{
+      role: 'user',
+      content: {
+        type: 'text',
+        text: `Review the Drupal config/sync files related to "${feature}".
+
+1. List all config/sync/*.yml files matching "${feature}"
+2. Summarise what each file configures
+3. Identify any dependencies between them (e.g. field storage before field instance)
+4. Flag anything that looks unusual or potentially problematic
+5. Confirm the correct import order if order matters
+
+Project config directory: config/sync/`,
       },
     }],
   })

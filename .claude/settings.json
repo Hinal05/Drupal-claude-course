@@ -8,6 +8,11 @@
             "type": "command",
             "command": "ddev drush cr 2>/dev/null || true",
             "statusMessage": "Clearing Drupal cache..."
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // \"\"' | grep -qE '\\.php$' && { read -r f; php -l \"$f\" 2>&1; } || true",
+            "statusMessage": "Checking PHP syntax..."
           }
         ]
       },
@@ -32,6 +37,16 @@
             "statusMessage": "Checking Drupal coding standards..."
           }
         ]
+      },
+      {
+        "matcher": "Read|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '(.tool_input.file_path // .tool_input.path // .tool_input.pattern // \"\")' | grep -qE '(\\.env|\\.pem|\\.key|\\.mcp\\.json|id_rsa|credentials)' && echo '{\"decision\": \"block\", \"reason\": \"Blocked: sensitive file detected (.env / .pem / .key / .mcp.json). Do not read credential files.\"}' || true",
+            "statusMessage": "Checking for sensitive files..."
+          }
+        ]
       }
     ],
     "PreCompact": [
@@ -52,6 +67,28 @@
           {
             "type": "command",
             "command": "notify-send 'Claude Code' 'Task complete' 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\": \"Drupal 11 project on DDEV. Key commands: ddev drush cr (cache clear), ddev drush cex --yes (export config), ddev drush cim --yes (import config). Custom modules: cc_* prefix. Custom theme: cc_ecommerce. Config sync: config/sync/ (34 files). Site: https://drupal-claude-course.ddev.site\"}'",
+            "statusMessage": "Loading Drupal project context..."
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '\"[\" + (now | strftime(\"%Y-%m-%d %H:%M:%S\")) + \"] \" + (.prompt // \"\")' >> /home/hinal/Documents/Documents/self/Claude/drupal-claude-course/.claude/prompt-log.txt 2>/dev/null || true",
+            "statusMessage": "Logging prompt..."
           }
         ]
       }
