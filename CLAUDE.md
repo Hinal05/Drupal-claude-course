@@ -80,6 +80,8 @@ Invoke these agents for specialized Drupal tasks:
 | `drupal-code-reviewer` | Review PHP/Twig/YAML for standards and security |
 | `drush-task-runner` | Run and explain drush commands |
 | `theme-component-builder` | Build Twig templates, libraries, preprocess hooks |
+| `drupal-config-manager` | Export, import, diff, and sync Drupal configuration |
+| `drupal-security-auditor` | Dedicated security scan — XSS, SQLi, CSRF, access control |
 
 ## Custom Skills (Slash Commands)
 
@@ -88,6 +90,9 @@ Invoke these agents for specialized Drupal tasks:
 | `/drupal-module <name>` | Scaffold a new custom module |
 | `/drupal-review [file]` | Review code for Drupal standards + security |
 | `/drush <command>` | Run any drush command with explanation |
+| `/drupal-config [export\|import\|status\|get]` | Manage Drupal config sync |
+| `/drupal-audit` | Run parallel 3-agent audit (standards + security + performance) |
+| `/drupal-deploy` | Run deploy sequence: cim → updb → cr |
 
 ## MCP Servers
 
@@ -103,15 +108,22 @@ Wraps `ddev drush` commands for direct Claude access.
 | Tool | `drush_module_list` | List all enabled modules |
 | Tool | `drush_module_enable` | Enable a module by machine name |
 | Tool | `drush_config_get` | Read a config value |
+| Tool | `drush_config_export` | Export active config to config/sync |
+| Tool | `drush_config_import` | Import config/sync into active database |
+| Tool | `drush_config_status` | Diff active config vs config/sync |
+| Tool | `drush_update_db` | Run pending database updates (updb) |
 | Tool | `drush_watchdog` | View recent Drupal log messages |
 | Tool | `drush_node_list` | List nodes by content type |
 | Resource | `drupal://site/status` | Site status as JSON |
 | Resource | `drupal://modules/enabled` | Enabled modules as JSON |
 | Resource | `drupal://modules/custom` | Custom module list |
 | Resource | `drupal://config/system.site` | Site config as JSON |
+| Resource | `drupal://config/status` | Config diff (active vs sync) as JSON |
 | Prompt | `drupal-debug` | Debug a Drupal error message |
 | Prompt | `drupal-review` | Review a Drupal file for standards |
 | Prompt | `drupal-module-plan` | Plan a new custom module |
+| Prompt | `drupal-deploy` | Step-by-step deployment sequence |
+| Prompt | `drupal-config-review` | Review config/sync files for a feature |
 
 ### `github` (via `@modelcontextprotocol/server-github`)
 GitHub API access — create PRs, post comments, read files, manage issues.
@@ -123,10 +135,14 @@ Configured in `.claude/settings.json` — run automatically:
 | Event | Trigger | Action |
 |-------|---------|--------|
 | `PostToolUse` | Edit or Write any file | `ddev drush cr` — auto-clears Drupal cache |
+| `PostToolUse` | Edit or Write a `.php` file | `php -l` — syntax check before cache clear |
 | `PostToolUse` | Bash with `git commit` | `git log --oneline -5` — shows recent commits |
 | `PreToolUse` | Bash with `git commit` | `phpcs --standard=Drupal` — checks coding standards |
+| `PreToolUse` | Read or Grep any file | Blocks `.env`, `.pem`, `.key`, `.mcp.json` — sensitive file guard |
 | `PreCompact` | Manual `/compact` | Injects reminder to preserve in-progress task context |
 | `Stop` | Claude finishes a task | Desktop notification via `notify-send` |
+| `SessionStart` | Every new session | Injects Drupal project context (DDEV commands, config path, site URL) |
+| `UserPromptSubmit` | Every user message | Appends prompt to `.claude/prompt-log.txt` (gitignored) |
 
 ## Course Modules Checklist
 

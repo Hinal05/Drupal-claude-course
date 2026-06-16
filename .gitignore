@@ -72,3 +72,4 @@ Dockerfile
 .ddev/commands/host/az*
 
 deployed_version
+.claude/prompt-log.txt
