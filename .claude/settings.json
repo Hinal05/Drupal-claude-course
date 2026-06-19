@@ -11,7 +11,7 @@
           },
           {
             "type": "command",
-            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // \"\"' | grep -qE '\\.php$' && { read -r f; php -l \"$f\" 2>&1; } || true",
+            "command": "jq -r '.tool_input.file_path // \"\"' | grep -qE '\\.php$' && php -l \"$(jq -r '.tool_input.file_path // \"\"')\" 2>&1 || true",
             "statusMessage": "Checking PHP syntax..."
           }
         ]
