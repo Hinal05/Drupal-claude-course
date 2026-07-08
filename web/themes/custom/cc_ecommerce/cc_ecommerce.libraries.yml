@@ -54,3 +54,10 @@ about-us:
       dist/css/about-us.min.css: {}
   dependencies:
     - cc_ecommerce/global
+
+sidebar:
+  css:
+    component:
+      dist/css/sidebar.min.css: {}
+  dependencies:
+    - cc_ecommerce/global

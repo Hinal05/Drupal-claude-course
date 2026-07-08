@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Generic block override for blocks placed in a sidebar region.
+ *
+ * Suitable for filters, category lists, or other supplementary blocks
+ * on category/product listing pages. Suggest this template via
+ * hook_theme_suggestions_block_alter() for blocks in sidebar_first /
+ * sidebar_second, e.g. by adding the suggestion
+ * "block__sidebar" when $variables['elements']['#id'] is in a sidebar
+ * region.
+ */
+#}
+{{ attach_library('cc_ecommerce/sidebar') }}
+<div{{ attributes.addClass('cc-sidebar-block') }}>
+  {% if label %}
+    <h3{{ title_attributes.addClass('cc-sidebar-block__title') }}>{{ label }}</h3>
+  {% endif %}
+  <div class="cc-sidebar-block__content">
+    {{ content }}
+  </div>
+</div>

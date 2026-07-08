@@ -64,6 +64,25 @@ function cc_ecommerce_preprocess_menu(&$variables) {
 }
 
 /**
+ * Implements hook_theme_suggestions_region_alter().
+ */
+function cc_ecommerce_theme_suggestions_region_alter(array &$suggestions, array $variables) {
+  if (in_array($variables['elements']['#region'], ['sidebar_first', 'sidebar_second'], TRUE)) {
+    $suggestions[] = 'region__sidebar';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_block_alter().
+ */
+function cc_ecommerce_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  $region = $variables['elements']['#configuration']['region'] ?? NULL;
+  if (in_array($region, ['sidebar_first', 'sidebar_second'], TRUE)) {
+    $suggestions[] = 'block__sidebar';
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_page_alter().
  */
 function cc_ecommerce_theme_suggestions_page_alter(array &$suggestions, array $variables) {
