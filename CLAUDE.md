@@ -87,12 +87,14 @@ Invoke these agents for specialized Drupal tasks:
 
 | Command | What it does |
 |---------|-------------|
+| `/drupal-install` | Bootstrap a brand new DDEV + Drupal project from scratch |
 | `/drupal-module <name>` | Scaffold a new custom module |
 | `/drupal-review [file]` | Review code for Drupal standards + security |
 | `/drush <command>` | Run any drush command with explanation |
 | `/drupal-config [export\|import\|status\|get]` | Manage Drupal config sync |
 | `/drupal-audit` | Run parallel 3-agent audit (standards + security + performance) |
 | `/drupal-deploy` | Run deploy sequence: cim → updb → cr |
+| `/theme-component <description>` | Build or override a Twig template, CSS library, preprocess hook, or block template |
 
 ## MCP Servers
 
